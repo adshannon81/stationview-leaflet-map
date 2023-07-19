@@ -13,6 +13,7 @@
         crossorigin=""></script>
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
 
     <style>
         html,
@@ -24,6 +25,23 @@
         #map {
             width: 800px;
             height: 600px;
+        }
+
+        .leaflet-popup-content-wrapper,
+        .leaflet-popup-tip {
+            background: #7bc5b3 !important;
+            color: #333;
+            box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
+            border: 2px solid white !important;
+        }
+
+        .leaflet-popup-tip {
+            border-top: #7bc5b3 !important;
+            border-left: #7bc5b3 !important;
+        }
+
+        .leaflet-container a.leaflet-popup-close-button {
+            color: black;
         }
     </style>
 
@@ -77,12 +95,34 @@
             var image = L.imageOverlay(imageUrl, bounds).addTo(map);
             map.setView(xy(x / 2, y / 2), -2);
 
+            //turf circle 
+            // var center = L.point(972, 1329); // Convert XY coordinates to Leaflet L.point object
+            // var circle = turf.circle(turf.point([center.x, center.y]), 10, { steps: 20 });
+            // var circleLayer = L.geoJSON(circle);
+            // circleLayer.addTo(map);
+
+            //add circle with custom div  popup 
+            var circle = L.circle([1416, 931], {
+                color: 'white',
+                fillColor: '#7bc5b3',
+                fillOpacity: 1,
+                radius: 33
+            }).addTo(map);
+
+            //popup with offset xy
+            circle.bindPopup("<b>Example Popup</b>", {
+                offset: [0, -6],
+                closeButton: false
+            });
+
+
+
+
+
             //add map on click event display lat lon console
             map.on('click', function (e) {
                 console.log(e.latlng);
             });
-
-
 
         }
 
