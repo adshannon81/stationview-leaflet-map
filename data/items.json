@@ -1,0 +1,272 @@
+[
+  {
+    "category": "Shoppping & Leisure",
+    "items": [
+      {
+        "number": 1,
+        "name": "Aldi",
+        "coord": { "lat": 53.2795021, "lng": -6.212726981 },
+        "address": "Sandyford, Dublin",
+        "color": "#cf6981",
+        "icon": "icons/aldi.png"
+      },
+      {
+        "number": 2,
+        "name": "Beacon South Quarter",
+        "coord": { "lat": 53.2775421, "lng": -6.2166745 },
+        "address": "Beacon South Quarter, Blackthorn Road, Sandyford, Dublin, Ireland",
+        "color": "#cf6982",
+        "icon": "icons/aldi.png"
+      },
+      {
+        "number": 3,
+        "name": "Dunnes Stores",
+        "coord": { "lat": 53.2782605, "lng": -6.2160379 },
+        "address": "Dunnes Stores- Beacon Court, Sandyford, Dublin 18, Ireland",
+        "color": "#cf6983",
+        "icon": "icons/aldi.png"
+      },
+      {
+        "number": 4,
+        "name": "Stillorgan Village Shopping Centre",
+        "coord": { "lat": 53.2894327, "lng": -6.200196 },
+        "address": "Stillorgan Village, Lower Kilmacud Road, Stillorgan, Dublin, Ireland",
+        "color": "#cf6984",
+        "icon": "icons/aldi.png"
+      },
+      {
+        "number": 5,
+        "name": "Supervalu",
+        "coord": { "lat": 53.2765622, "lng": -6.2239527 },
+        "address": "SuperValu, Sandyford, Dublin, Ireland",
+        "color": "#cf6985",
+        "icon": "icons/aldi.png"
+      },
+      {
+        "number": 6,
+        "name": "The Beacon Barber",
+        "coord": { "lat": 53.2771287, "lng": -6.2161947 },
+        "address": "New plaza Barbers, Sandyford, Dublin, Ireland",
+        "color": "#cf6986",
+        "icon": "icons/aldi.png"
+      }
+    ],
+    "color": "#cf6981"
+  },
+  {
+    "category": "Restaurant's & Cafés",
+    "items": [
+      {
+        "number": 7,
+        "name": "Ranchero Taqueria",
+        "coord": { "lat": 53.2794369, "lng": -6.2141488 },
+        "address": "Square One Cafe, Blackthorn Drive, Sandyford, Dublin 18, Ireland",
+        "color": "#fda400",
+        "icon": "icons/aldi.png"
+      },
+      {
+        "number": 8,
+        "name": "Starbucks",
+        "coord": { "lat": 53.2773057, "lng": -6.2177253 },
+        "address": "Starbucks Coffee, Sandyford, Dublin 18, Ireland",
+        "color": "#fda401",
+        "icon": "icons/aldi.png"
+      },
+      {
+        "number": 9,
+        "name": "Elephant and Castle",
+        "coord": { "lat": 53.2780006, "lng": -6.2154177 },
+        "address": "Elephant & Castle, Sandyford, Dublin 18, Ireland",
+        "color": "#fda402",
+        "icon": "icons/aldi.png"
+      },
+      {
+        "number": 10,
+        "name": "Zambero",
+        "coord": { "lat": 53.2771096, "lng": -6.2166474 },
+        "address": "Zambrero Beacon, Sandyford, Dublin, Ireland",
+        "color": "#fda403",
+        "icon": "icons/aldi.png"
+      },
+      {
+        "number": 11,
+        "name": "The Coffee Shot",
+        "coord": { "lat": 53.2772218, "lng": -6.2172995 },
+        "address": "The Coffee Shot, Sandyford, Dublin 18, Ireland",
+        "color": "#fda404",
+        "icon": "icons/aldi.png"
+      },
+      {
+        "number": 12,
+        "name": "Musashi",
+        "coord": { "lat": 53.2769924, "lng": -6.2182024 },
+        "address": "Musashi Sandyford Noodles & Sushi Bar, Blackthorn Road, Sandyford, Dublin 18, Ireland",
+        "color": "#fda405",
+        "icon": "icons/aldi.png"
+      },
+      {
+        "number": 13,
+        "name": "Zaytoon",
+        "coord": { "lat": 53.2766204, "lng": -6.2164357 },
+        "address": "Zaytoon Sandyford, Sandyford, Dublin 18, Ireland",
+        "color": "#fda406",
+        "icon": "icons/aldi.png"
+      },
+      {
+        "number": 14,
+        "name": "Sushida Ramen",
+        "coord": { "lat": 53.276579, "lng": -6.2147511 },
+        "address": "Sushida Sandyford, Corrig Road, Sandyford, Dublin 18, Ireland",
+        "color": "#fda407",
+        "icon": "icons/aldi.png"
+      }
+    ],
+    "color": "#fda400"
+  },
+  {
+    "category": "Parks & Sporting Facilities",
+    "items": [
+      {
+        "number": 15,
+        "name": "Blackthorn Park and Playground",
+        "coord": { "lat": 53.2785068, "lng": -6.2224138 },
+        "address": "Blackthorn Park Playground, Drummartin Link Road, Sandyford, Dublin, Ireland",
+        "color": "#87bd29",
+        "icon": "icons/aldi.png"
+      },
+      {
+        "number": 16,
+        "name": "Naomh Olaf Gaa Club",
+        "coord": { "lat": 53.2804371, "lng": -6.2210145 },
+        "address": "Naomh Olaf GAA Club, Holly Avenue, Stillorgan Business Park, Dublin, Ireland",
+        "color": "#87bd30",
+        "icon": "icons/aldi.png"
+      },
+      {
+        "number": 17,
+        "name": "Leopardstown Racecourse / Golf Centre",
+        "coord": { "lat": 53.266888, "lng": -6.1954649 },
+        "address": "Leopardstown Racecourse, Foxrock, Dublin 18, Ireland",
+        "color": "#87bd31",
+        "icon": ""
+      },
+      {
+        "number": 18,
+        "name": "Silverpark GAA Grounds",
+        "coord": { "lat": 53.27374, "lng": -6.194197 },
+        "address": "Silverpark GAA grounds, Tudor Lawns, Stillorgan, Dublin, Ireland",
+        "color": "#87bd32",
+        "icon": ""
+      },
+      {
+        "number": 19,
+        "name": "Leopardstown Tennis Club",
+        "coord": { "lat": 53.2790738, "lng": -6.1938109 },
+        "address": "Leopardstown Tennis Club, Leopardstown Grove, Stillorgan, Dublin, Ireland",
+        "color": "#87bd33",
+        "icon": ""
+      },
+      {
+        "number": 20,
+        "name": "Clonmore Park and Playground",
+        "coord": { "lat": 53.2821863, "lng": -6.2023626 },
+        "address": "Clonmore Park, Stillorgan Heath, Leopardstown, Dublin, Ireland",
+        "color": "#87bd34",
+        "icon": "icons/aldi.png"
+      },
+      {
+        "number": 21,
+        "name": "Kilmacud Crokes GAA Club",
+        "coord": { "lat": 53.2864406, "lng": -6.2001023 },
+        "address": "Kilmacud Crokes GAA Club, Glenalbyn Road, Stillorgan, Dublin, Ireland",
+        "color": "#87bd35",
+        "icon": "icons/aldi.png"
+      }
+    ],
+    "color": "#87bd29"
+  },
+  {
+    "category": "Education & Healthcare",
+    "items": [
+      {
+        "number": 22,
+        "name": "Goatstown Stillorgan Educate Together National School",
+        "coord": { "lat": 53.2784033, "lng": -6.211323 },
+        "address": "Goatstown Stillorgan Educate Together National School, Ballymoss Road, Sandyford Business Park, Dublin, Ireland",
+        "color": "#3d9cdc",
+        "icon": "icons/aldi.png"
+      },
+      {
+        "number": 23,
+        "name": "St. Raphaela's Primary and Secondary Girls' Schools",
+        "coord": { "lat": 53.2830554, "lng": -6.2056634 },
+        "address": "St. Raphaela's Secondary School, Saint Raphaela's Road, Kilmacud, Dublin, Ireland",
+        "color": "#3d9cdc",
+        "icon": "icons/aldi.png"
+      },
+      {
+        "number": 24,
+        "name": "St. Benildus College for Boys",
+        "coord": { "lat": 53.2846666, "lng": -6.221372 },
+        "address": "St. Benildus College, Kilmacud Road Upper, Stillorgan, Dublin, Ireland",
+        "color": "#3d9cdc",
+        "icon": "icons/aldi.png"
+      },
+      {
+        "number": 25,
+        "name": "St Olafs National School",
+        "coord": { "lat": 53.2824133, "lng": -6.2264914 },
+        "address": "St Olafs National School, Balally Drive, Dundrum, Dublin 16, Ireland",
+        "color": "#3d9cdc",
+        "icon": "icons/aldi.png"
+      },
+      {
+        "number": 26,
+        "name": "Nord Anglia International School Dublin",
+        "coord": { "lat": 53.266763, "lng": -6.198633 },
+        "address": "Nord Anglia International School Dublin, Carmanhall and Leopardstown, Dublin, Ireland",
+        "color": "#3d9cdc",
+        "icon": "icons/aldi.png"
+      },
+      {
+        "number": 27,
+        "name": "Beacon Hospital",
+        "coord": { "lat": 53.2768328, "lng": -6.2194332 },
+        "address": "Beacon Hospital, Bracken Road, Sandyford Business Park, Dublin 18, Ireland",
+        "color": "#3d9cdc",
+        "icon": "icons/aldi.png"
+      },
+      {
+        "number": 28,
+        "name": "Explorium - National Sport & Science Centre",
+        "coord": { "lat": 53.2668535, "lng": -6.2376714 },
+        "address": "Explorium - National Sport & Science Centre, Blackglen Road, Sandyford, Dublin, Ireland",
+        "color": "#3d9cdc",
+        "icon": "icons/aldi.png"
+      }
+    ],
+    "color": "#3d9cdc"
+  },
+  {
+    "category": "Employment Zones",
+    "items": [
+      {
+        "number": 29,
+        "name": "Central Park",
+        "coord": { "lat": 53.2865142, "lng": -6.2392916 },
+        "address": "Central Park, Sandyford Road, Dundrum, Dublin 16, Ireland",
+        "color": "#07b8a4",
+        "icon": "icons/aldi.png"
+      },
+      {
+        "number": 30,
+        "name": "South County Business Park",
+        "coord": { "lat": 53.2696751, "lng": -6.199282 },
+        "address": "South County Business Park, Carmanhall and Leopardstown, Dublin 18, Ireland",
+        "color": "#07b8a5",
+        "icon": "icons/aldi.png"
+      }
+    ],
+    "color": "#07b8a4"
+  }
+]

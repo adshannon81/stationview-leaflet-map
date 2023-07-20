@@ -15,6 +15,8 @@
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
 
+    <script src="circle.js"></script>
+
     <style>
         html,
         body {
@@ -43,6 +45,13 @@
         .leaflet-container a.leaflet-popup-close-button {
             color: black;
         }
+
+        .icon-text {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
     </style>
 
 
@@ -54,32 +63,275 @@
 
     <script>
 
+        const markers = [
+            {
+                "category": "Schools",
+                "items": [
+                    {
+                        "number": 1,
+                        "name": "Adamstown Community College",
+                        "coord": { "lat": 783, "lng": 965 },
+                        "address": "",
+                        "color": "#6cdabc",
+                    },
+                    {
+                        "number": 2,
+                        "name": "St. John the Evangelist NS",
+                        "coord": { "lat": 732, "lng": 1094 },
+                        "address": "",
+                        "color": "#6cdabc",
+                    },
+                    {
+                        "number": 3,
+                        "name": "Adamstown Castle Educate Together",
+                        "coord": { "lat": 688, "lng": 1228 },
+                        "address": "",
+                        "color": "#6cdabc",
+                    },
+                    {
+                        "number": 4,
+                        "name": "Scoil Mhuire National School",
+                        "coord": { "lat": 1495, "lng": 828 },
+                        "address": "",
+                        "color": "#6cdabc",
+                    },
+                    {
+                        "number": 5,
+                        "name": "Scoil Aine Naofa",
+                        "coord": { "lat": 1401, "lng": 1521 },
+                        "address": "",
+                        "color": "#6cdabc",
+                    },
+                    {
+                        "number": 6,
+                        "name": "Lucan Community College",
+                        "coord": { "lat": 1296, "lng": 1554 },
+                        "address": "",
+                        "color": "#6cdabc",
+                    },
+                    {
+                        "number": 7,
+                        "name": "Griffeen Valley Educate Together",
+                        "coord": { "lat": 948, "lng": 1902 },
+                        "address": "",
+                        "color": "#6cdabc",
+                    },
+                    {
+                        "number": 8,
+                        "name": "Gaelscoil Eiscir Riada",
+                        "coord": { "lat": 1419, "lng": 1955 },
+                        "address": "",
+                        "color": "#6cdabc",
+                    },
+                    {
+                        "number": 9,
+                        "name": "Esker Educate Together",
+                        "coord": { "lat": 1494, "lng": 1934 },
+                        "address": "",
+                        "color": "#6cdabc",
+                    },
+                    {
+                        "number": 10,
+                        "name": "Colaiste Phadraig",
+                        "coord": { "lat": 1812, "lng": 2007 },
+                        "address": "",
+                        "color": "#6cdabc",
+                    },
+                    {
+                        "number": 11,
+                        "name": "St.Andrews National School",
+                        "coord": { "lat": 2030, "lng": 1879 },
+                        "address": "",
+                        "color": "#6cdabc",
+                    },
+                    {
+                        "number": 12,
+                        "name": "Lucan East Educate Together",
+                        "coord": { "lat": 1490, "lng": 2261 },
+                        "address": "",
+                        "color": "#6cdabc",
+                    },
+                    {
+                        "number": 13,
+                        "name": "Lucan Community National School",
+                        "coord": { "lat": 884, "lng": 2277 },
+                        "address": "",
+                        "color": "#6cdabc",
+                    },
+                    {
+                        "number": 14,
+                        "name": "Kishoge Community College",
+                        "coord": { "lat": 626, "lng": 2260 },
+                        "address": "",
+                        "color": "#6cdabc",
+                    },
+                    {
+                        "number": 15,
+                        "name": "St Peter the Apostle National School",
+                        "coord": { "lat": 733, "lng": 3002 },
+                        "address": "",
+                        "color": "#6cdabc",
+                    },
+                    {
+                        "number": 16,
+                        "name": "Collinstown Park Community College",
+                        "coord": { "lat": 1010, "lng": 3280 },
+                        "address": "",
+                        "color": "#6cdabc",
+                    },
+                    {
+                        "number": 17,
+                        "name": "St. Mary's National School",
+                        "coord": { "lat": 1086, "lng": 3343 },
+                        "address": "",
+                        "color": "#6cdabc",
+                    },
+                    {
+                        "number": 18,
+                        "name": "The Kings Hospital School",
+                        "coord": { "lat": 1868, "lng": 3357 },
+                        "address": "",
+                        "color": "#6cdabc",
+                    },
+
+
+
+                ],
+                "color": "#6cdabc"
+            },
+            {
+                "category": "Sport",
+                "items": [
+                    {
+                        "number": 19,
+                        "name": "Lucan Sarsﬁelds GAA",
+                        "coord": { "lat": 386, "lng": 1050 },
+                        "address": "",
+                        "color": "#fda400",
+                        "icon": "icons/aldi.png"
+                    },
+                    {
+                        "number": 20,
+                        "name": "Lucan Harriers",
+                        "coord": { "lat": 1128, "lng": 1478 },
+                        "address": "",
+                        "color": "#fda400",
+                        "icon": "icons/aldi.png"
+                    },
+                    {
+                        "number": 21,
+                        "name": "Lucan United",
+                        "coord": { "lat": 1342, "lng": 727 },
+                        "address": "",
+                        "color": "#fda400",
+                        "icon": "icons/aldi.png"
+                    },
+                    {
+                        "number": 22,
+                        "name": "Cricket Grounds",
+                        "coord": { "lat": 2400, "lng": 824 },
+                        "address": "",
+                        "color": "#fda400",
+                        "icon": "icons/aldi.png"
+                    },
+                    {
+                        "number": 23,
+                        "name": "Esker Football Club",
+                        "coord": { "lat": 1586, "lng": 2534 },
+                        "address": "",
+                        "color": "#fda400",
+                        "icon": "icons/aldi.png"
+                    },
+
+                ],
+                "color": "#a6529a"
+            },
+            {
+                "category": "Retail",
+                "items": [
+                    {
+                        "number": 24,
+                        "name": "Tesco & Aldi",
+                        "coord": { "lat": 658, "lng": 818 },
+                        "address": "",
+                        "color": "#fda400",
+                        "icon": ""
+                    },
+                    {
+                        "number": 25,
+                        "name": "Lidl",
+                        "coord": { "lat": 1137, "lng": 548 },
+                        "address": "",
+                        "color": "#fda400",
+                        "icon": ""
+                    },
+                    {
+                        "number": 26,
+                        "name": "Lucan Shopping Centre",
+                        "coord": { "lat": 1316, "lng": 1234 },
+                        "address": "",
+                        "color": "#fda400",
+                        "icon": ""
+                    },
+                    {
+                        "number": 27,
+                        "name": "Tesco",
+                        "coord": { "lat": 1582, "lng": 1090 },
+                        "address": "",
+                        "color": "#fda400",
+                        "icon": ""
+                    },
+                    {
+                        "number": 28,
+                        "name": "Lucan Village",
+                        "coord": { "lat": 1836, "lng": 1598 },
+                        "address": "",
+                        "color": "#fda400",
+                        "icon": ""
+                    },
+                    {
+                        "number": 29,
+                        "name": "Fonthill Retail Park",
+                        "coord": { "lat": 1450, "lng": 2738 },
+                        "address": "",
+                        "color": "#fda400",
+                        "icon": ""
+                    },
+                    {
+                        "number": 30,
+                        "name": "Liﬀey Valley Shopping Centre",
+                        "coord": { "lat": 1710, "lng": 3466 },
+                        "address": "",
+                        "color": "#fda400",
+                        "icon": ""
+                    },
+
+                ],
+                "color": "#0071bc"
+            },
+        ]
+
         var map = L.map('map', {
             crs: L.CRS.Simple,
             minZoom: -2,
             maxZoom: 0,
             maxBounds: [
                 [0, 0],
-                [2506, 3579]
+                [2826, 3871]
             ],
             maxBoundsViscosity: 1.0
         });
 
-        d3.csv("data/Polygon details.csv")
-            .then(data => {
-                console.log('data', data);
 
-                buildPolygons({
-                    x: 3579, //width
-                    y: 2506, //height
-                    polygonsData: data,
-                    imageUrl: 'img/Station-View-map-SD-interactivev2.png'
-                })
-
-            })
+        buildPolygons({
+            x: 3871, //width
+            y: 2826, //height
+            imageUrl: 'img/Station-View-map-SD-interactivev2.png'
+        })
 
 
-        function buildPolygons({ x, y, polygonsData, imageUrl }) {
+
+        function buildPolygons({ x, y, imageUrl }) {
 
             const polygons = [];
 
@@ -95,38 +347,75 @@
             var image = L.imageOverlay(imageUrl, bounds).addTo(map);
             map.setView(xy(x / 2, y / 2), -2);
 
-            //turf circle 
-            // var center = L.point(972, 1329); // Convert XY coordinates to Leaflet L.point object
-            // var circle = turf.circle(turf.point([center.x, center.y]), 10, { steps: 20 });
-            // var circleLayer = L.geoJSON(circle);
-            // circleLayer.addTo(map);
+            markers.forEach(cat => {
+                cat.items.forEach(item => {
 
-            //add circle with custom div  popup 
-            var circle = L.circle([1416, 931], {
-                color: 'white',
-                fillColor: '#7bc5b3',
-                fillOpacity: 1,
-                radius: 33
-            }).addTo(map);
+                    const { name, coord: { lat, lng } } = item
 
-            //popup with offset xy
-            circle.bindPopup("<b>Example Popup</b>", {
-                offset: [0, -6],
-                closeButton: false
-            });
+                    var circle = L.circle([lat, lng], {
+                        color: 'white',
+                        fillColor: 'black',
+                        fillOpacity: 1,
+                        radius: 33,
+                    }).addTo(map);
 
+                    //add label to the map 
+                    var icon = L.divIcon({
+                        html: `${item.number}`,
+                        className: 'icon-text',
+                    });
 
+                    var marker = L.marker([lat, lng], {
+                        icon: icon
+                    }).addTo(map)
+                    console.log('marker', marker);
 
+                    circle.bindPopup(`<b>${name}</b>`, {
+                        offset: [0, -6],
+                        closeButton: false
+                    });
+                })
+            })
 
 
             //add map on click event display lat lon console
             map.on('click', function (e) {
                 console.log(e.latlng);
+
+                //add to clipboard
+
+                const { lat, lng } = e.latlng
+                const text = `"coord": { "lat": ${lat}, "lng": ${lng} },`
+                navigator.clipboard.writeText(text).then(function () {
+                    console.log('Async: Copying to clipboard was successful!');
+                }, function (err) {
+                    console.error('Async: Could not copy text: ', err);
+                });
+
+            });
+
+            //update all text 
+            map.on('zoomend', function () {
+                document.querySelectorAll(".icon-text").forEach(el => {
+                    const zoom = map.getZoom()
+
+                    switch (zoom) {
+                        case -2:
+                            el.style.fontSize = '10px'
+                            break;
+                        case -1:
+                            el.style.fontSize = '15px'
+                            break;
+                        case 0:
+                            el.style.fontSize = '25px'
+                            break;
+                    }
+
+
+                })
             });
 
         }
-
-
 
     </script>
 
