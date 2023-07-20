@@ -35,7 +35,7 @@
         .map-container {
             display: flex;
             flex-direction: row;
-            height: 100vh;
+            height: 800px;
         }
 
         #map {
@@ -44,37 +44,41 @@
 
         #menu {
             width: 30%;
-            background-color: #363948;
-            color: white;
+            background-color: white;
             padding: 20px;
             box-sizing: border-box;
+            overflow-y: scroll;
         }
 
         @media (max-width: 768px) {
             .map-container {
                 flex-direction: column;
+                height: 800px;
             }
 
             #map {
                 width: 100%;
-                height: 50vh;
+                height: 50%;
             }
 
             #menu {
                 width: 100%;
+                height: 50%;
             }
         }
 
         .item {
-            padding: 10px 10px 10px 35px;
-            border-bottom: 1px solid rgb(79, 79, 79);
+            padding: 5px 10px;
+            /* border-bottom: 1px solid rgb(79, 79, 79); */
+            user-select: none;
         }
 
         .item:hover {
-            color: #ccc;
+            background-color: #ccc;
         }
 
         .accordion {
+            text-transform: uppercase;
             color: white;
             cursor: pointer;
             padding: 18px;
@@ -120,7 +124,12 @@
 
 
 
+        .leaflet-popup-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
+        }
 
 
 
@@ -148,6 +157,11 @@
             color: white;
             pointer-events: none !important;
         }
+
+        .leaflet-container {
+            background: white !important;
+            outline: 0;
+        }
     </style>
 
 
@@ -156,8 +170,8 @@
 <body>
 
     <div class="map-container">
-        <div id="menu"></div>
         <div id="map"></div>
+        <div id="menu"></div>
     </div>
 
     <script>
@@ -309,7 +323,7 @@
                     {
                         "number": 20,
                         "name": "Lucan Harriers",
-                        "coord": { "lat": 1128, "lng": 1478 },
+                        "coord": { "lat": 1128, "lng": 1467 },
                         "address": "",
                         "color": "#fda400",
                         "icon": "icons/aldi.png"
@@ -406,6 +420,7 @@
                 "color": "#0071bc"
             },
         ]
+        const menuDiv = document.getElementById("menu");
 
         var map = L.map('map', {
             crs: L.CRS.Simple,
@@ -441,45 +456,6 @@
             var image = L.imageOverlay(imageUrl, bounds).addTo(map);
             map.setView(xy(x / 2, y / 2), -2);
 
-            markers.forEach(cat => {
-                cat.items.forEach(item => {
-                    const { name, coord: { lat, lng } } = item
-                    var circle = L.circle([lat, lng], {
-                        color: 'white',
-                        fillColor: 'black',
-                        fillOpacity: 1,
-                        radius: 33,
-                    }).addTo(map);
-                    //add label to the map 
-                    var icon = L.divIcon({
-                        html: `${item.number}`,
-                        className: 'icon-text',
-                    });
-                    var marker = L.marker([lat, lng], {
-                        icon: icon
-                    }).addTo(map)
-                    circle.bindPopup(`<b>${name}</b>`, {
-                        offset: [0, -6],
-                        closeButton: false
-                    });
-                })
-            })
-
-
-            //add map on click event display lat lon console
-            map.on('click', function (e) {
-                console.log(e.latlng);
-                //add to clipboard
-                const { lat, lng } = e.latlng
-                const text = `"coord": { "lat": ${lat}, "lng": ${lng} },`
-                navigator.clipboard.writeText(text).then(function () {
-                    console.log('Async: Copying to clipboard was successful!');
-                }, function (err) {
-                    console.error('Async: Could not copy text: ', err);
-                });
-
-            });
-
             //update all text 
             map.on('zoomend', function () {
                 document.querySelectorAll(".icon-text").forEach(el => {
@@ -500,68 +476,89 @@
         }
 
 
+        // markers.forEach(cat => {
+        //         cat.items.forEach(item => {
+        //             const { name, coord: { lat, lng } } = item
+        //             var circle = L.circle([lat, lng], {
+        //                 color: 'white',
+        //                 fillColor: 'black',
+        //                 fillOpacity: 1,
+        //                 radius: 33,
+        //             }).addTo(map);
+        //             //add label to the map 
+        //             var icon = L.divIcon({
+        //                 html: `${item.number}`,
+        //                 className: 'icon-text',
+        //             });
+        //             var marker = L.marker([lat, lng], {
+        //                 icon: icon
+        //             }).addTo(map)
+        //             circle.bindPopup(`<b>${name}</b>`, {
+        //                 offset: [0, -6],
+        //                 closeButton: false
+        //             });
+        //         })
+        //     })
+
+
         createMenu(markers)
         function createMenuItem(item, onMarkerClick) {
 
-            const marker = new google.maps.Marker({
-                position: item.coord,
-                sName: item.name,
-                map: map,
-                icon: {
-                    path: google.maps.SymbolPath.CIRCLE,
-                    scale: 10,
-                    fillColor: item.color,
-                    fillOpacity: 1,
-                    strokeWeight: 1,
-                    strokeColor: "white",
-                },
-                InfoWindow: null,
-                label: {
-                    text: item.number + "",
-                    className: 'marker-label',
-                    fontSize: "13px",
-                    color: 'white'
-                }
+            const { name, coord: { lat, lng } } = item
+            var circle = L.circle([lat, lng], {
+                color: 'white',
+                fillColor: 'black',
+                fillOpacity: 1,
+                radius: 33,
+            }).addTo(map);
+            //add label to the map 
+            var icon = L.divIcon({
+                html: `${item.number}`,
+                className: 'icon-text',
             });
 
-            if (item.icon && item.icon !== "") {
-                marker.setIcon(item.icon)
-                marker.setLabel("")
-            }
+            var marker = L.marker([lat, lng], {
+                icon: icon
+            }).addTo(map)
 
-            //add infobox to marker
-            const oInfoBox = new google.maps.InfoWindow({
-                content: item.name,
-            });
-            marker.InfoWindow = oInfoBox;
 
-            marker.addListener("click", () => {
-                oInfoBox.open(map, marker);
-                if (typeof onMarkerClick === "function") {
-                    onMarkerClick()
-                }
-            });
+            var popup = L.popup({
+                offset: [0, -6],
+                closeButton: false
+            }).setContent(`<b>${name}</b>`);
+
+            circle.bindPopup(popup)
+
+            // marker.addListener("click", () => {
+            //     oInfoBox.open(map, marker);
+            //     if (typeof onMarkerClick === "function") {
+            //         onMarkerClick()
+            //     }
+            // });
 
             const div = document.createElement("div");
             div.innerHTML = item.number + ". " + item.name;
             div.className = "item"
             div.style.cursor = "pointer";
             div.onclick = () => {
-                map.setCenter(item.coord);
                 map.setZoom(15);
+                setTimeout(() => {
+                    map.setView(item.coord);
+                }, 300);
             }
             div.addEventListener("mouseover", () => {
                 //  open infobox
-                oInfoBox.open(map, marker);
+                popup.openPopup(map);
             });
             div.addEventListener("mouseout", () => {
                 //  close infobox
-                oInfoBox.close();
+                popup.closePopup();
             })
+
             return {
                 div,
                 marker,
-                oInfoBox
+                popup
             }
         }
 
@@ -612,25 +609,39 @@
                     //checn if every status if false 
                     console.log('menuItems', menuItems);
                     const allClosed = menuItems.every(item => !item.status());
+                    // if (allClosed) {
+                    //     const bounds = new google.maps.LatLngBounds();
+                    //     menuItems.forEach(item => {
+                    //         item.markers.forEach(marker => {
+                    //             marker.setOpacity(1);
+                    //             bounds.extend(marker.getPosition());
+                    //         })
+                    //     })
+                    //     map.fitBounds(bounds);
+                    //     console.log('allClosed');
+                    //     return
+                    // }
+
                     if (allClosed) {
-                        const bounds = new google.maps.LatLngBounds();
+                        const bounds = L.latLngBounds();
                         menuItems.forEach(item => {
                             item.markers.forEach(marker => {
                                 marker.setOpacity(1);
-                                bounds.extend(marker.getPosition());
-                            })
-                        })
+                                bounds.extend(marker.getLatLng());
+                            });
+                        });
                         map.fitBounds(bounds);
                         console.log('allClosed');
-                        return
+                        return;
                     }
 
+
                     //fit bound markers 
-                    const bounds = new google.maps.LatLngBounds();
-                    markers.forEach(marker => {
-                        bounds.extend(marker.getPosition());
-                    })
-                    map.fitBounds(bounds);
+                    // const bounds = new google.maps.LatLngBounds();
+                    // markers.forEach(marker => {
+                    //     bounds.extend(marker.getPosition());
+                    // })
+                    // map.fitBounds(bounds);
 
                 }
 
@@ -687,6 +698,22 @@
 
 
         }
+
+
+
+        //add map on click event display lat lon console
+        map.on('click', function (e) {
+            console.log(e.latlng);
+            //add to clipboard
+            const { lat, lng } = e.latlng
+            const text = `"coord": { "lat": ${lat}, "lng": ${lng} },`
+            navigator.clipboard.writeText(text).then(function () {
+                console.log('Async: Copying to clipboard was successful!');
+            }, function (err) {
+                console.error('Async: Could not copy text: ', err);
+            });
+
+        });
 
 
     </script>
