@@ -81,13 +81,13 @@
             text-transform: uppercase;
             color: white;
             cursor: pointer;
-            padding: 18px;
+            /* padding: 18px; */
             width: 100%;
             border: none;
             text-align: left;
             outline: none;
-            font-size: 17px;
-            font-weight: bold;
+            font-size: 38px;
+            /* font-weight: bold; */
             transition: 0.4s;
             box-sizing: border-box;
             user-select: none;
@@ -95,6 +95,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            font-family: fantasy;
         }
 
         .active,
@@ -109,13 +110,11 @@
         }
 
         .arrow {
-            display: block;
-            width: 7px;
-            height: 7px;
-            border-top: 3px solid white;
-            border-left: 3px solid white;
-            transform: rotate(-135deg);
-            transition: transform 0.4s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 50px;
+            font-family: emoji;
         }
 
         .down {
@@ -161,6 +160,24 @@
         .leaflet-container {
             background: #f4f4f5 !important;
             outline: 0;
+        }
+
+
+
+       
+        .leaflet-popup-content-wrapper {
+            border-width: 3px;
+            border-style: solid;
+        }
+
+        .leaflet-popup-tip-container {
+            margin-top: -2px;
+            height: 23px;
+        }
+
+        .leaflet-popup-tip {
+            border-style: solid;
+            border-width: 0 3px 3px 0;
         }
     </style>
 
@@ -510,7 +527,7 @@
                 color: 'white',
                 fillColor: 'black',
                 fillOpacity: 1,
-                radius: 33,
+                radius: 35,
             }).addTo(map);
             //add label to the map 
             var icon = L.divIcon({
@@ -543,6 +560,8 @@
             div.style.cursor = "pointer";
             div.onclick = () => {
                 map.setZoom(15);
+                circle.fireEvent("click")
+
                 setTimeout(() => {
                     map.setView(item.coord);
                 }, 300);
@@ -573,7 +592,8 @@
                 catDiv.className = "accordion";
                 catDiv.style.color = cat.color;
 
-                const arrow = document.createElement("i");
+                const arrow = document.createElement("span");
+                arrow.textContent = "+";
                 arrow.classList.add("arrow");
                 catDiv.appendChild(arrow);
 
@@ -607,7 +627,6 @@
                     closeAll(cat.category)
                     status() ? close() : open()
 
-                    //checn if every status if false 
                     console.log('menuItems', menuItems);
                     const allClosed = menuItems.every(item => !item.status());
                     // if (allClosed) {
@@ -622,15 +641,13 @@
                     //     console.log('allClosed');
                     //     return
                     // }
+                    const bounds = L.latLngBounds();
 
                     if (allClosed) {
-                        const bounds = L.latLngBounds();
                         menuItems.forEach(item => {
                             item.markers.forEach(marker => {
-
                                 marker.setOpacity(1);
                                 marker.options.circle.setStyle({ fillOpacity: 1, opacity: 1 })
-
                                 bounds.extend(marker.getLatLng());
                             });
                         });
@@ -641,6 +658,12 @@
 
 
                     //fit bound markers 
+                    menuItems.forEach(item => {
+                        item.markers.forEach(marker => {
+                            bounds.extend(marker.getLatLng());
+                        });
+                    });
+                    map.fitBounds(bounds);
                     // const bounds = new google.maps.LatLngBounds();
                     // markers.forEach(marker => {
                     //     bounds.extend(marker.getPosition());
@@ -651,17 +674,19 @@
 
                 function close() {
                     catDiv.classList.remove("active");
-                    arrow.classList.remove("down");
+                    arrow.textContent = "+";
+
                     panel.style.maxHeight = null;
                     markers.forEach(marker => {
                         marker.setOpacity(0.2);
-                        marker.options.circle.setStyle({ fillOpacity: 0, opacity: 0 })
+                        marker.options.circle.setStyle({ fillOpacity: 0.2, opacity: 0.2 })
                     })
                 }
 
                 function open() {
                     catDiv.classList.add("active");
-                    arrow.classList.add("down");
+                    //long minus html code 
+                    arrow.innerHTML = "&#8211;";
                     panel.style.maxHeight = panel.scrollHeight + "px";
                     markers.forEach(marker => {
                         marker.setOpacity(1);
